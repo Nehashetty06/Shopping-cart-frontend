@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomePageComponent } from './home-page/home-page.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { HomePageComponent } from './home-page/home-page-component/home-page.component';
 
 const routes: Routes = [
   {
@@ -11,15 +9,18 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomePageComponent,
+    loadChildren: () =>
+      import('./home-page/home-page.module').then((m) => m.HomePageModule),
   },
   {
     path: 'login',
-    component: LoginComponent,
+    loadChildren: () =>
+      import('./login/login.module').then((m) => m.LoginModule),
   },
   {
     path: 'register',
-    component: RegisterComponent,
+    loadChildren: () =>
+      import('./register/register.module').then((m) => m.RegisterModule),
   },
 ];
 
